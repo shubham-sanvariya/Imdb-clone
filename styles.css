@@ -27,3 +27,12 @@ nav .favorites button {
 nav .favorites button a {
     text-decoration: none;
 }
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    text-align: center;
+}
