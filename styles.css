@@ -1,3 +1,7 @@
+html {
+    background-color: gray;
+}
+
 nav {
     position: relative;
     top: 1rem;
@@ -37,6 +41,35 @@ nav .favorites button a {
     text-decoration: none;
 }
 
+.movies-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie {
+    display: flex;
+    align-items: center;
+    width: 48%;
+    margin-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.57);
+    padding: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+.movie img {
+    max-width: 110px;
+    margin-right: 10px;
+}
+
+.movieText{
+    padding: 0px 30px;
+}
+
+.movieText h2, p{
+    color: #ffffff;
+}
 
 footer {
     position: relative;
