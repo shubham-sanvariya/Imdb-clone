@@ -1,4 +1,4 @@
-const API_KEY = "bfd6b563";
+ const API_KEY = "bfd6b563";
 
 const search_inp_el = document.querySelector("#search_inp");
 const movies_content_el = document.querySelector(".movies-content");
@@ -41,7 +41,7 @@ function createMovieEl(movie){
     movieElem.classList.add('movie');
 
     movieElem.innerHTML = `
-    <a href="movie.html?imdbID=${movie.imdbID}">
+    <a href="movie/movie.html?imdbID=${movie.imdbID}">
       <img src="${movie.Poster}" alt="${movie.Title}">
     </a>
     <div class="movieText">
