@@ -71,6 +71,12 @@ nav .favorites button a {
     color: #ffffff;
 }
 
+.fav-btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 footer {
     position: relative;
     bottom: 0;
