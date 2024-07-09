@@ -5,8 +5,6 @@ const movies_content_el = document.querySelector(".movies-content");
 
 let favorites = [];
 
-// console.log(document.title);
-
 const searchMovies = async () => {
     const input_val = search_inp_el.value;
     if (input_val === '') {
@@ -20,10 +18,9 @@ const searchMovies = async () => {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            getItem();
             displayMovies(data.Search); // Display search results
         }
-         else {
+        else {
             movies_content_el.innerHTML = '<p>No results found.</p>';
         }
     } catch (error) {
@@ -36,7 +33,7 @@ if (document.title === "IMBD Clone") {
 }
 
 
-function displayMovies(movies){
+function displayMovies(movies) {
     movies_content_el.innerHTML = "";
     movies.forEach(movie => {
         const movie_el = createMovieEl(movie);
@@ -44,9 +41,15 @@ function displayMovies(movies){
     });
 }
 
-function createMovieEl(movie){
+function isFavorite(imdbID, favorites) {
+    return favorites.some(favorite => favorite.imdbID === imdbID);
+}
+
+function createMovieEl(movie) {
     const movieElem = document.createElement('div');
     movieElem.classList.add('movie');
+
+    const favoriteStatus = isFavorite(movie.imdbID, favorites);
 
     movieElem.innerHTML = `
     <a href="movie/movie.html?imdbID=${movie.imdbID}">
@@ -55,39 +58,44 @@ function createMovieEl(movie){
     <div class="movieText">
       <h2 class="white">${movie.Title}</h2>
       <p class="white">${movie.Year}</p>
-      <button id="btn" class="fav-btn">favorites</button>
+      <button id="btn" class="fav-btn"></button>
       </div>
   `;
 
-   const bo = false;
     const favButton = movieElem.querySelector('.fav-btn');
-   if (!bo) {
-       favButton.addEventListener('click', () => addToFavoritesList(movie));
-       favButton.style.backgroundColor = 'rgb(245, 197, 24)'; // Set background color for non-favorites
-       favButton.style.color = 'black';
-   }
+    if (!favoriteStatus) {
+        favButton.addEventListener('click', () => addToFavoritesList(movie));
+        favButton.style.backgroundColor = 'gold';
+        favButton.textContent = "Add to favorites"
+    } else {
+        favButton.addEventListener("click", () => removeFromFavoritesList(movie));
+        favButton.style.backgroundColor = 'red';
+        favButton.textContent = "in favorites"
+    }
 
-  return movieElem;
+    return movieElem;
 }
 
 function addToFavoritesList(movie) {
-    console.log(movie)
-    const imdbID = movie.imdbID;
-    const isAlreadyInFavorites = favorites.some(item => item.imdbID === imdbID);
-
-    if (!isAlreadyInFavorites) {
-        favorites.push(movie);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        console.log(favorites)
-    }
+    favorites.push(movie);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    console.log(favorites)
     searchMovies();
 }
 
-function getItem() {
+function removeFromFavoritesList(movie) {
+    favorites = favorites.filter((m) => m.imdbID !== movie.imdbID);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    console.log(favorites);
+    searchMovies();
+}
+
+window.addEventListener("load", () => {
     const storedFavorites = localStorage.getItem('favorites');
-    
+
     if (storedFavorites) {
         favorites = JSON.parse(storedFavorites);
+        console.log(favorites)
     }
-    console.log(favorites)
-};
+    searchMovies();
+})
