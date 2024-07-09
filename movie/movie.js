@@ -1,5 +1,5 @@
 
-const API_KEY = 'bfd6b563';
+import {API_KEY} from "../index.js";
 
 const movieDetails = document.getElementById('movieDetailsPage');
 
