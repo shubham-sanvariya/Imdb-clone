@@ -1,0 +1,40 @@
+  html {
+      background-color: gray;
+  }
+
+  .header {
+      text-align: center;
+      color: goldenrod;
+      padding: 34px;
+      background-color: black;
+      border-radius: 2rem;
+      margin-bottom: 2rem;
+  }
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .favorite-movies{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 50vh;
+    margin-bottom: 1rem;
+  }
+
+  .favorite-movies{
+    background-color: aqua;
+  }
+
+  .movie-poster{
+    margin-bottom: 1rem;
+  }
+
+  .movie-details{
+    background-color: red;
+  }
