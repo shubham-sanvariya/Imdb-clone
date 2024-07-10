@@ -69,6 +69,15 @@ nav .favorites button a {
     padding: 0px 30px;
 }
 
+.movieText a {
+    text-decoration: none;
+}
+
+.movieText a:hover {
+    text-decoration: underline;
+    color: rgba(218, 165, 32, 0.704);
+}
+
 .movieText h2, p{
     color: #ffffff;
 }

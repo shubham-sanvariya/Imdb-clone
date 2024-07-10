@@ -59,7 +59,9 @@ function createMovieEl(movie) {
       <img src="${movie.Poster}" alt="${movie.Title}">
     </a>
     <div class="movieText">
+    <a href="movie/movie.html?imdbID=${movie.imdbID}">
       <h2 class="white">${movie.Title}</h2>
+    </a>
       <p class="white">${movie.Year}</p>
       <button id="btn" class="fav-btn"><i></i></button>
       </div>
