@@ -29,7 +29,7 @@ function displayFavorite(movie){
     favorite_movie_el.classList.add("favorite-movies");
     favorite_movie_el.innerHTML = `
             <div class="movie-poster">
-                <a href="movie.html?imdbID=${movie.imdbID}">
+                <a href="../movie/movie.html?imdbID=${movie.imdbID}">
                     <img class="poster" src="${movie.Poster}" alt="${movie.Title}">
                 </a>
             </div>
