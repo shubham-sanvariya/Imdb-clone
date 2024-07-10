@@ -87,11 +87,15 @@ function addToFavoritesList(movie) {
     searchMovies();
 }
 
-function removeFromFavoritesList(movie) {
+export function removeFromFavoritesList(movie, p = "") {
     favorites = favorites.filter((m) => m.imdbID !== movie.imdbID);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     console.log(favorites);
-    searchMovies();
+    if (p === "") {
+        searchMovies();
+    }else{
+        return favorites;
+    }
 }
 
 window.addEventListener("load", () => {
