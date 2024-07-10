@@ -89,10 +89,12 @@ nav .favorites button a {
 }
 
 footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    background-color: #f9f9f9;
+    position: absolute;
+    margin-top: 2rem;
+    bottom: 5px;
+    width: 97%;
+    background-color: #f9f9f9b7;
     padding: 10px;
     text-align: center;
+    
 }

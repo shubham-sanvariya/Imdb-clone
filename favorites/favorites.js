@@ -1,7 +1,3 @@
-
-
-
-
 import { getFavorites, removeFromFavoritesList } from "../index.js";
 
 let favorites = [];
