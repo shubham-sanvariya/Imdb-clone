@@ -6,7 +6,10 @@ const movies_content_el = document.querySelector(".movies-content");
 let favorites = [];
 
 const searchMovies = async () => {
+    if (search_inp_el === null) return;
+
     const input_val = search_inp_el.value;
+
     if (input_val === '') {
         movies_content_el.innerHTML = ''; // Clear the main content area
         return;
@@ -58,7 +61,7 @@ function createMovieEl(movie) {
     <div class="movieText">
       <h2 class="white">${movie.Title}</h2>
       <p class="white">${movie.Year}</p>
-      <button id="btn" class="fav-btn"></button>
+      <button id="btn" class="fav-btn"><i></i></button>
       </div>
   `;
 
@@ -66,10 +69,11 @@ function createMovieEl(movie) {
     if (!favoriteStatus) {
         favButton.addEventListener('click', () => addToFavoritesList(movie));
         favButton.style.backgroundColor = 'gold';
-        favButton.textContent = "Add to favorites"
+        favButton.children[0].textContent = "Add to favorites";
     } else {
         favButton.addEventListener("click", () => removeFromFavoritesList(movie));
         favButton.style.backgroundColor = 'red';
+        favButton.style.color = 'white';
         favButton.textContent = "in favorites"
     }
 
@@ -91,11 +95,19 @@ function removeFromFavoritesList(movie) {
 }
 
 window.addEventListener("load", () => {
+    getFavorites();
+})
+
+export function getFavorites(p = ""){
     const storedFavorites = localStorage.getItem('favorites');
 
     if (storedFavorites) {
         favorites = JSON.parse(storedFavorites);
-        console.log(favorites)
+        // console.log(favorites)
     }
-    searchMovies();
-})
+    if (p === "") {
+        searchMovies();
+    }else{
+        return favorites;
+    }
+}
