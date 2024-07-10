@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const parent = document.querySelector(".container");
 
-function fetchFavorites(){
+function fetchFavorites() {
     parent.innerHTML = "";
     if (favorites.length > 0) {
         favorites.forEach((fav) => {
@@ -23,7 +23,7 @@ function fetchFavorites(){
     }
 }
 
-function displayFavorite(movie){
+function displayFavorite(movie) {
 
     const favorite_movie_el = document.createElement("div");
     favorite_movie_el.classList.add("favorite-movies");
@@ -34,8 +34,10 @@ function displayFavorite(movie){
                 </a>
             </div>
             <div class="movie-details">
-                <h2 class="yellow">${movie.Title}</h2><br>
-                <p class="white"><strong>Year:</strong> ${movie.Year}</p><br>
+            <a href="../movie/movie.html?imdbID=${movie.imdbID}">
+                <h2>${movie.Title}</h2><br>
+            </a>
+                <p><strong>Year:</strong> ${movie.Year}</p><br>
                 <button class="remove-btn">Delete
                 </button>
             </div>`;
@@ -46,8 +48,8 @@ function displayFavorite(movie){
     parent.appendChild(favorite_movie_el);
 }
 
-function removeFromFavorites(movie){
-  favorites = removeFromFavoritesList(movie, "fav")
+function removeFromFavorites(movie) {
+    favorites = removeFromFavoritesList(movie, "fav")
     if (favorites) {
         fetchFavorites();
     }

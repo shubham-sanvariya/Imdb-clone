@@ -30,7 +30,16 @@
     border-radius: 1rem;
   }
 
-  img {
+    a {
+      text-decoration: none;
+    }
+  
+    a:hover {
+      text-decoration: underline;
+      color: whitesmoke;
+    }
+
+  .poster {
     max-width: 55%;
   }
 
@@ -43,7 +52,7 @@
     color: antiquewhite;
   }
 
-  button {
+  .remove-btn {
     border-radius: 5px;
     background-color: red;
   }
