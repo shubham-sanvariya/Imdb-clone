@@ -35,10 +35,12 @@ nav h1 {
 nav .favorites button {
     margin-right: 2rem;
     border-radius: 2rem;
+    background-color: rgb(253, 206, 35);
 }
 
 nav .favorites button a {
     text-decoration: none;
+    color: black;
 }
 
 .movies-content {
