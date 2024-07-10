@@ -2,7 +2,6 @@ export const API_KEY = "bfd6b563";
 
 const search_inp_el = document.querySelector("#search_inp");
 const movies_content_el = document.querySelector(".movies-content");
-const footer_el = document.querySelector("footer");
 
 let favorites = [];
 
@@ -22,8 +21,6 @@ const searchMovies = async () => {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            displayMovies(data.Search); // Display search results
-            footer_el.style.position = "relative"
         }
         else {
             movies_content_el.innerHTML = '<p>No results found.</p>';

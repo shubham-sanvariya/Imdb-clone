@@ -11,6 +11,7 @@ nav {
     background-color: black;
     border-radius: 2rem;
     margin-bottom: 2rem;
+    margin-left: 20px;
 }
 
 nav .search_div input {
@@ -47,6 +48,7 @@ nav .favorites button a {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-left: 20px;
 }
 
 .movie {
@@ -88,13 +90,38 @@ nav .favorites button a {
     border-radius: 5px;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
 footer {
-    position: absolute;
+    /* position: absolute;
     margin-top: 2rem;
     bottom: 5px;
     width: 97%;
     background-color: #f9f9f9b7;
     padding: 10px;
-    text-align: center;
-    
+    text-align: center; */
+    background-color: #f9f9f9b7;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        margin-top: 1rem;
+        /* Pushes footer to the bottom */
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+}
+
+body,
+.movies-content {
+    overflow-x: hidden;
 }
