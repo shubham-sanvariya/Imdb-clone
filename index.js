@@ -117,3 +117,5 @@ export function getFavorites(p = ""){
         return favorites;
     }
 }
+
+searchMovies();
