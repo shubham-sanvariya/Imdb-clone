@@ -7,6 +7,7 @@ let favorites = [];
 
 window.addEventListener("load", () => {
     getFavorites();
+    console.log(favorites);
 })
 
 const searchMovies = async () => {
