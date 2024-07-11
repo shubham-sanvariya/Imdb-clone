@@ -99,8 +99,8 @@ function addToFavoritesList(movie) {
 
 export function removeFromFavoritesList(movie, p = "") {
     favorites = favorites.filter((m) => m.imdbID !== movie.imdbID);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
     console.log(favorites);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
     if (p === "") {
         searchMovies();
     }else{
@@ -113,6 +113,7 @@ export function getFavorites(p = ""){
 
     if (storedFavorites) {
         favorites = JSON.parse(storedFavorites);
+        console.log(favorites)
     }
     if (p === "") {
         searchMovies();
