@@ -15,6 +15,19 @@ window.addEventListener("load", () => {
     getFavorites();
 })
 
+export function getFavorites(p = "") {
+    const storedFavorites = localStorage.getItem('favorites');
+
+    if (storedFavorites) {
+        favorites = JSON.parse(storedFavorites);
+    }
+    if (p === "") {
+        searchMovies();
+    } else {
+        return favorites;
+    }
+}
+
 const searchMovies = async () => {
     if (search_inp_el === null) return;
 
@@ -79,9 +92,9 @@ function createMovieEl(movie) {
 
     const favButton = movieElem.querySelector('.fav-btn');
     if (!favoriteStatus) {
-        favButton.addEventListener('click', () => addToFavoritesList(movie));
         favButton.style.backgroundColor = 'gold';
         favButton.children[0].textContent = "Add to favorites";
+        favButton.addEventListener('click', () => addToFavoritesList(movie));
     } else {
         favButton.addEventListener("click", () => removeFromFavoritesList(movie));
         favButton.style.backgroundColor = 'red';
@@ -95,44 +108,14 @@ function createMovieEl(movie) {
 function addToFavoritesList(movie) {
     favorites.push(movie);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    updateMovieButtons();
+    searchMovies()
 }
 
 export function removeFromFavoritesList(movie, p = "") {
     favorites = favorites.filter((m) => m.imdbID !== movie.imdbID);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    updateMovieButtons();
+    searchMovies();
     if (p !== "") {
-        return favorites;
-    }
-}
-
-function updateMovieButtons() {
-    const favButtons = document.querySelectorAll('.fav-btn');
-    favButtons.forEach(button => {
-        const imdbID = button.getAttribute('data-imdbID');
-        const isMovieFavorite = isFavorite(imdbID);
-
-        if (!isMovieFavorite) {// Set background color for non-favorites
-            button.style.backgroundColor = 'gold';
-            button.children[0].textContent = "Add to favorites";
-        } else {
-            button.style.backgroundColor = 'red'; // Set background color for favorites
-            button.style.color = 'white';
-            button.textContent = 'In Favorites';
-        }
-    });
-}
-
-export function getFavorites(p = ""){
-    const storedFavorites = localStorage.getItem('favorites');
-
-    if (storedFavorites) {
-        favorites = JSON.parse(storedFavorites);
-    }
-    if (p === "") {
-        searchMovies();
-    }else{
         return favorites;
     }
 }
