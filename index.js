@@ -71,7 +71,7 @@ function createMovieEl(movie) {
       <h2 class="white">${movie.Title}</h2>
     </a>
       <p class="white">${movie.Year}</p>
-      <button id="btn" class="fav-btn"><i></i></button>
+      <button id="btn" class="fav-btn" data-imdbID="${movie.imdbID}"><i></i></button>
       </div>
   `;
 
@@ -94,7 +94,7 @@ function addToFavoritesList(movie) {
     favorites.push(movie);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     console.log(favorites)
-    searchMovies();
+    updateMovieButtons();
 }
 
 export function removeFromFavoritesList(movie, p = "") {
@@ -102,10 +102,27 @@ export function removeFromFavoritesList(movie, p = "") {
     console.log(favorites);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     if (p === "") {
-        searchMovies();
+        updateMovieButtons();
     }else{
         return favorites;
     }
+}
+
+function updateMovieButtons() {
+    const favButtons = document.querySelectorAll('.fav-btn');
+    favButtons.forEach(button => {
+        const imdbID = button.getAttribute('data-imdbID');
+        const isFavorite = favorites.some(item => item.imdbID === imdbID);
+
+        if (!isFavorite) {// Set background color for non-favorites
+            button.style.backgroundColor = 'gold';
+            button.children[0].textContent = "Add to favorites";
+        } else {
+            button.style.backgroundColor = 'red'; // Set background color for favorites
+            button.style.color = 'white';
+            button.textContent = 'In Favorites';
+        }
+    });
 }
 
 export function getFavorites(p = ""){

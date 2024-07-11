@@ -48,7 +48,6 @@ function removeFromFavorites(movie) {
     favorites = removeFromFavoritesList(movie, "fav")
     if (favorites) {
         fetchFavorites();
-        getFavorites();
     }
 }
 
