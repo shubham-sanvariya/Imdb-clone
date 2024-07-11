@@ -5,6 +5,13 @@ const movies_content_el = document.querySelector(".movies-content");
 
 let favorites = [];
 
+window.addEventListener("pageshow", () => {
+    const navigationEntries = performance.getEntriesByType("navigation");
+    if (navigationEntries.length > 0 && navigationEntries[0].type === "back_forward") {
+        location.reload();
+    }
+});
+
 window.addEventListener("load", () => {
     getFavorites();
     console.log(favorites);
