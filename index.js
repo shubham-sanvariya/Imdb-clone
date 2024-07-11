@@ -119,7 +119,7 @@ function updateMovieButtons() {
     const favButtons = document.querySelectorAll('.fav-btn');
     favButtons.forEach(button => {
         const imdbID = button.getAttribute('data-imdbID');
-        const isFavorite = favorites.some(item => item.imdbID === imdbID);
+        const isFavorite = update_fav.some(item => item.imdbID === imdbID);
 
         if (!isFavorite) {// Set background color for non-favorites
             button.style.backgroundColor = 'gold';
