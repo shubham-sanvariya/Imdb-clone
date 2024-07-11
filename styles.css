@@ -45,6 +45,7 @@ nav h1 {
 }
 
 nav .favorites button {
+    font-size: 1.2rem;
     margin-right: 2rem;
     border-radius: 2rem;
     background-color: rgb(253, 206, 35);
