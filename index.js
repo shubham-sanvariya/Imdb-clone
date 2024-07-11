@@ -101,9 +101,8 @@ export function removeFromFavoritesList(movie, p = "") {
     favorites = favorites.filter((m) => m.imdbID !== movie.imdbID);
     console.log(favorites);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    if (p === "") {
-        updateMovieButtons();
-    }else{
+    updateMovieButtons();
+    if (p !== "") {
         return favorites;
     }
 }
