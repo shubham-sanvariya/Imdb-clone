@@ -39,9 +39,12 @@ if (document.title === "IMBD Clone") {
     search_inp_el.addEventListener("input", searchMovies);
 }
 
-
 function displayMovies(movies) {
     movies_content_el.innerHTML = "";
+    console.log(favorites)
+    if (movies === undefined) {
+        return;
+    }
     movies.forEach(movie => {
         const movie_el = createMovieEl(movie);
         movies_content_el.append(movie_el);
@@ -100,7 +103,6 @@ export function removeFromFavoritesList(movie, p = "") {
     if (p === "") {
         searchMovies();
     }else{
-        searchMovies();
         return favorites;
     }
 }
@@ -117,5 +119,3 @@ export function getFavorites(p = ""){
         return favorites;
     }
 }
-
-searchMovies();
