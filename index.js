@@ -5,6 +5,10 @@ const movies_content_el = document.querySelector(".movies-content");
 
 let favorites = [];
 
+window.addEventListener("load", () => {
+    getFavorites();
+})
+
 const searchMovies = async () => {
     if (search_inp_el === null) return;
 
@@ -96,20 +100,16 @@ export function removeFromFavoritesList(movie, p = "") {
     if (p === "") {
         searchMovies();
     }else{
+        searchMovies();
         return favorites;
     }
 }
-
-window.addEventListener("load", () => {
-    getFavorites();
-})
 
 export function getFavorites(p = ""){
     const storedFavorites = localStorage.getItem('favorites');
 
     if (storedFavorites) {
         favorites = JSON.parse(storedFavorites);
-        // console.log(favorites)
     }
     if (p === "") {
         searchMovies();
