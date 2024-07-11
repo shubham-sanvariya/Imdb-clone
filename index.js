@@ -115,6 +115,7 @@ export function removeFromFavoritesList(movie, p = "") {
 }
 
 function updateMovieButtons() {
+    const update_fav = getFavorites("fav");
     const favButtons = document.querySelectorAll('.fav-btn');
     favButtons.forEach(button => {
         const imdbID = button.getAttribute('data-imdbID');
