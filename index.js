@@ -5,23 +5,14 @@ const movies_content_el = document.querySelector(".movies-content");
 
 let favorites = [];
 
-// window.addEventListener("pageshow", () => {
-//     const navigationEntries = performance.getEntriesByType("navigation");
-//     if (navigationEntries.length > 0 && navigationEntries[0].type === "back_forward") {
-//         getFavorites();
-//     }
-// });
-
 window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
-        // location.reload();
         getFavorites();
     }
 });
 
 window.addEventListener("load", () => {
     getFavorites();
-    console.log(favorites);
 })
 
 const searchMovies = async () => {
@@ -36,10 +27,8 @@ const searchMovies = async () => {
 
     try {
         const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${input_val}`);
-        console.log(response);
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             displayMovies(data.Search); // Display search results
         }
         else {
@@ -56,7 +45,6 @@ if (document.title === "IMBD Clone") {
 
 function displayMovies(movies) {
     movies_content_el.innerHTML = "";
-    console.log(favorites)
     if (movies === undefined) {
         return;
     }
@@ -66,7 +54,7 @@ function displayMovies(movies) {
     });
 }
 
-function isFavorite(imdbID, favorites) {
+function isFavorite(imdbID) {
     return favorites.some(favorite => favorite.imdbID === imdbID);
 }
 
@@ -74,7 +62,7 @@ function createMovieEl(movie) {
     const movieElem = document.createElement('div');
     movieElem.classList.add('movie');
 
-    const favoriteStatus = isFavorite(movie.imdbID, favorites);
+    const favoriteStatus = isFavorite(movie.imdbID);
 
     movieElem.innerHTML = `
     <a href="movie/movie.html?imdbID=${movie.imdbID}">
@@ -107,13 +95,11 @@ function createMovieEl(movie) {
 function addToFavoritesList(movie) {
     favorites.push(movie);
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    console.log(favorites)
     updateMovieButtons();
 }
 
 export function removeFromFavoritesList(movie, p = "") {
     favorites = favorites.filter((m) => m.imdbID !== movie.imdbID);
-    console.log(favorites);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     updateMovieButtons();
     if (p !== "") {
@@ -125,9 +111,9 @@ function updateMovieButtons() {
     const favButtons = document.querySelectorAll('.fav-btn');
     favButtons.forEach(button => {
         const imdbID = button.getAttribute('data-imdbID');
-        const isFavorite = favorites.some(item => item.imdbID === imdbID);
+        const isMovieFavorite = isFavorite(imdbID);
 
-        if (!isFavorite) {// Set background color for non-favorites
+        if (!isMovieFavorite) {// Set background color for non-favorites
             button.style.backgroundColor = 'gold';
             button.children[0].textContent = "Add to favorites";
         } else {
@@ -143,7 +129,6 @@ export function getFavorites(p = ""){
 
     if (storedFavorites) {
         favorites = JSON.parse(storedFavorites);
-        console.log(favorites)
     }
     if (p === "") {
         searchMovies();
