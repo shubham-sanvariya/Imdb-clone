@@ -21,6 +21,7 @@ const searchMovies = async () => {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
+            displayMovies(data.Search); // Display search results
         }
         else {
             movies_content_el.innerHTML = '<p>No results found.</p>';
